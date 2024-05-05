@@ -16,6 +16,7 @@ export class QuestionComponent implements OnInit {
   correctAns:number=0;
   IncorrectAns:number=0;
   interval$:any;
+  progress:string="0"
   constructor(private questservice:QuestionService) { }
 
   ngOnInit(): void {
@@ -43,11 +44,13 @@ export class QuestionComponent implements OnInit {
         if(option.correct){
           this.points=this.points+10;
           this.correctAns=this.correctAns+1;
-          this.currentquestion=this.currentquestion+1
+          this.currentquestion=this.currentquestion+1;
+          this.getProgresspercent();
         }else{
           this.points=this.points-10;
           this.IncorrectAns=this.IncorrectAns-1;
-          this.currentquestion=this.currentquestion+1
+          this.currentquestion=this.currentquestion+1;
+          this.getProgresspercent();
         }
   }
   startcounter(){
@@ -76,6 +79,11 @@ export class QuestionComponent implements OnInit {
     this.resettcounter();
     this.getallquestion();
     this.counter=60;
-    this.currentquestion=0
+    this.currentquestion=0;
+    this.progress="0"
+  }
+  getProgresspercent(){
+    this.progress=((this.currentquestion/this.questionList.length)*100).toString();
+    return this.progress;
   }
 }

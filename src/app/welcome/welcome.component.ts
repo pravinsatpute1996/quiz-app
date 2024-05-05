@@ -13,5 +13,5 @@ export class WelcomeComponent implements OnInit {
   }
   startQuiz(){
     localStorage.setItem('name',this.nameKey.nativeElement.value)
-  }
+  }     
 }
